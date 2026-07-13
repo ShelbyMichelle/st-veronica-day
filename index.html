@@ -33,10 +33,28 @@
         font-family: "Cormorant Garamond", serif;
       }
       .hero-gradient {
+        min-height: calc(100vh - 73px);
+        background: #082f49;
+      }
+      .hero-gradient::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("images/photo-32.jpg") center / cover no-repeat;
+        transform: scale(1.05);
+        animation: heroDrift 18s ease-in-out infinite alternate;
+      }
+      .hero-gradient::after {
+        content: "";
+        position: absolute;
+        inset: 0;
         background:
-          radial-gradient(1200px 600px at 80% -10%, #bae6fd 0%, transparent 60%),
-          radial-gradient(900px 500px at -10% 20%, #e0f2fe 0%, transparent 55%),
-          linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+          linear-gradient(180deg, rgba(2, 30, 55, 0.72), rgba(2, 30, 55, 0.42)),
+          radial-gradient(circle at 50% 30%, rgba(14, 165, 233, 0.2), transparent 45%);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
       }
       .cross {
         background:
@@ -68,6 +86,45 @@
       }
       .aspect-video-16 {
         aspect-ratio: 16 / 9;
+      }
+      .home-photo-motion {
+        animation: photoFloat 7s ease-in-out infinite;
+      }
+      .gallery-photo {
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .gallery-photo:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 45px -18px rgba(2, 132, 199, 0.45);
+      }
+      @keyframes heroDrift {
+        from {
+          transform: scale(1.05) translate3d(-1%, -1%, 0);
+        }
+        to {
+          transform: scale(1.12) translate3d(1%, 1%, 0);
+        }
+      }
+      @keyframes photoFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-gradient::before,
+        .home-photo-motion {
+          animation: none;
+        }
+        .gallery-photo,
+        .fade-up {
+          transition: none;
+        }
       }
     </style>
   </head>
@@ -101,24 +158,19 @@
 
     <!-- HERO -->
     <section id="top" class="hero-gradient relative overflow-hidden">
-      <div class="max-w-6xl mx-auto px-5 pt-16 pb-24 md:pt-24 md:pb-32 text-center">
-        <p
-          class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-sky-700 bg-white/70 border border-sky-200 rounded-full px-4 py-1.5 mb-6 fade-up"
-        >
-          <span class="h-1.5 w-1.5 rounded-full bg-sky-500"></span> A Celebration of Faith &amp;
-          Sisterhood
-        </p>
+      <div class="hero-content max-w-6xl mx-auto px-5 pt-16 pb-24 md:pt-24 md:pb-32 text-center">
+       
         <h1
-          class="font-display text-5xl md:text-7xl leading-[1.05] text-sky-900 font-semibold fade-up"
+          class="font-display text-5xl md:text-7xl leading-[1.05] text-white font-semibold fade-up"
         >
           St Veronica Day
         </h1>
         <p
-          class="font-display italic text-2xl md:text-3xl text-sky-700 mt-3 fade-up"
+          class="font-display italic text-2xl md:text-3xl text-sky-100 mt-3 fade-up"
         >
           "Do not quench the spirit - 1 Thessalonians 5:19"
         </p>
-        <p class="max-w-2xl mx-auto mt-6 text-slate-600 md:text-lg fade-up">
+        <p class="max-w-2xl mx-auto mt-6 text-white/90 md:text-lg fade-up">
           A day of worship, joy, colour and compassion; hosted by women of the St Veronica Guild. If you couldn't be there in person, step in through the photos, videos
           and messages below.
         </p>
@@ -131,29 +183,39 @@
           >
           <a
             href="#videos"
-            class="rounded-full bg-white hover:bg-sky-50 text-sky-700 font-medium px-6 py-3 border border-sky-200 transition"
+            class="rounded-full bg-white/95 hover:bg-white text-sky-700 font-medium px-6 py-3 border border-white transition"
             >Watch Videos</a
           >
+          <button
+            id="musicToggle"
+            type="button"
+            class="rounded-full bg-sky-900/70 hover:bg-sky-900 text-white font-medium px-6 py-3 border border-white/30 transition backdrop-blur"
+            aria-label="Play background music"
+          >
+            Play Music
+          </button>
         </div>
 
         <div
-          class="mt-14 grid grid-cols-3 gap-4 md:gap-8 max-w-xl mx-auto text-sky-900 fade-up"
+          class="mt-14 grid grid-cols-3 gap-4 md:gap-8 max-w-xl mx-auto text-white fade-up"
         >
           <div>
             <div class="font-display text-3xl md:text-4xl font-semibold">120+</div>
-            <div class="text-xs uppercase tracking-widest text-sky-600">Sisters gathered</div>
+            <div class="text-xs uppercase tracking-widest text-sky-100">Sisters gathered</div>
           </div>
           <div>
             <div class="font-display text-3xl md:text-4xl font-semibold">1</div>
-            <div class="text-xs uppercase tracking-widest text-sky-600">Beautiful day</div>
+            <div class="text-xs uppercase tracking-widest text-sky-100">Beautiful day</div>
           </div>
           <div>
             <div class="font-display text-3xl md:text-4xl font-semibold">∞</div>
-            <div class="text-xs uppercase tracking-widest text-sky-600">Memories made</div>
+            <div class="text-xs uppercase tracking-widest text-sky-100">Memories made</div>
           </div>
         </div>
       </div>
     </section>
+
+    <audio id="backgroundMusic" src="audio/music.mp3" preload="metadata" loop></audio>
 
     <!-- STORY -->
     <section id="story" class="py-20 md:py-28 bg-white">
@@ -177,6 +239,39 @@
       </div>
     </section>
 
+    <!-- FEATURED WELCOME -->
+    <section id="welcome" class="py-20 md:py-24 bg-gradient-to-b from-white to-sky-50">
+      <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-[0.95fr_1.05fr] gap-10 md:gap-14 items-center">
+        <div class="fade-up">
+          <p class="text-xs uppercase tracking-[0.3em] text-sky-600 mb-3">A Word of Welcome</p>
+          <h2 class="font-display text-4xl md:text-5xl text-sky-900">
+            From the President of the Guild
+          </h2>
+          <div class="mt-6 space-y-4 text-slate-600 md:text-lg leading-relaxed">
+            <p>
+              Welcome to our St Veronica Day celebration page. Today we give thanks for faith,
+              fellowship, service and the beautiful bond shared by the women of our guild.
+            </p>
+            <p>
+              May these memories remind every sister that her prayers, kindness and presence are a
+              blessing to the church and to the community we serve.
+            </p>
+          </div>
+          <div class="mt-7 text-sm font-semibold text-sky-800">President, St Veronica Women's Guild</div>
+        </div>
+        <figure
+          class="fade-up home-photo-motion overflow-hidden rounded-2xl bg-sky-100 card-shadow"
+          onclick="openLightbox('images/photo-20.jpg')"
+        >
+          <img
+            src="images/photo-20.jpg"
+            alt="President of the St Veronica Women's Guild"
+            class="w-full max-h-[36rem] object-contain"
+          />
+        </figure>
+      </div>
+    </section>
+
     <!-- GALLERY -->
     <section id="gallery" class="py-20 md:py-28 bg-sky-50/50">
       <div class="max-w-6xl mx-auto px-5">
@@ -190,7 +285,7 @@
           </p>
         </div>
 
-        <div id="photoGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div id="photoGrid" class="columns-2 md:columns-3 gap-3 md:gap-4">
           <!-- photos injected by JS -->
         </div>
       </div>
@@ -271,38 +366,38 @@
 
       // Photos from the images folder.
       const PHOTOS = [
-        { src: "images/photo-1.png", caption: "St Veronica Day moment 1" },
-        { src: "images/photo-2.jpg", caption: "St Veronica Day moment 2" },
-        { src: "images/photo-3.jpg", caption: "St Veronica Day moment 3" },
-        { src: "images/photo-4.jpg", caption: "St Veronica Day moment 4" },
-        { src: "images/photo-5.jpg", caption: "St Veronica Day moment 5" },
-        { src: "images/photo-6.jpg", caption: "St Veronica Day moment 6" },
-        { src: "images/photo-7.jpg", caption: "St Veronica Day moment 7" },
-        { src: "images/photo-8.jpg", caption: "St Veronica Day moment 8" },
-        { src: "images/photo-9.jpg", caption: "St Veronica Day moment 9" },
-        { src: "images/photo-10.jpg", caption: "St Veronica Day moment 10" },
-        { src: "images/photo-11.jpg", caption: "St Veronica Day moment 11" },
-        { src: "images/photo-12.jpg", caption: "St Veronica Day moment 12" },
-        { src: "images/photo-13.jpg", caption: "St Veronica Day moment 13" },
-        { src: "images/photo-14.jpg", caption: "St Veronica Day moment 14" },
-        { src: "images/photo-15.jpg", caption: "St Veronica Day moment 15" },
-        { src: "images/photo-16.jpg", caption: "St Veronica Day moment 16" },
-        { src: "images/photo-17.jpg", caption: "St Veronica Day moment 17" },
-        { src: "images/photo-18.jpg", caption: "St Veronica Day moment 18" },
-        { src: "images/photo-19.jpg", caption: "St Veronica Day moment 19" },
-        { src: "images/photo-20.jpg", caption: "St Veronica Day moment 20" },
-        { src: "images/photo-21.jpg", caption: "St Veronica Day moment 21" },
-        { src: "images/photo-22.jpg", caption: "St Veronica Day moment 22" },
-        { src: "images/photo-23.jpg", caption: "St Veronica Day moment 23" },
-        { src: "images/photo-24.jpg", caption: "St Veronica Day moment 24" },
-        { src: "images/photo-26.jpg", caption: "St Veronica Day moment 26" },
-        { src: "images/photo-27.jpg", caption: "St Veronica Day moment 27" },
-        { src: "images/photo-28.jpg", caption: "St Veronica Day moment 28" },
-        { src: "images/photo-29.jpg", caption: "St Veronica Day moment 29" },
-        { src: "images/photo-32.jpg", caption: "St Veronica Day moment 32" },
-        { src: "images/photo-33.jpg", caption: "St Veronica Day moment 33" },
-        { src: "images/photo-34.jpg", caption: "St Veronica Day moment 34" },
-        { src: "images/photo-35.jpg", caption: "St Veronica Day moment 35" },
+        { src: "images/photo-1.png", caption: "Gathered in faith and joy" },
+        { src: "images/photo-2.jpg", caption: "A beautiful start to the celebration" },
+        { src: "images/photo-3.jpg", caption: "Sisters sharing the day together" },
+        { src: "images/photo-4.jpg", caption: "Moments of grace and thanksgiving" },
+        { src: "images/photo-5.jpg", caption: "Blue and white in joyful unity" },
+        { src: "images/photo-6.jpg", caption: "Smiles from a blessed gathering" },
+        { src: "images/photo-7.jpg", caption: "Celebrating the spirit of St Veronica" },
+        { src: "images/photo-8.jpg", caption: "A day filled with fellowship" },
+        { src: "images/photo-9.jpg", caption: "Together in worship and love" },
+        { src: "images/photo-10.jpg", caption: "Honouring service and sisterhood" },
+        { src: "images/photo-11.jpg", caption: "Precious memories from the day" },
+        { src: "images/photo-12.jpg", caption: "The joy of being together" },
+        { src: "images/photo-13.jpg", caption: "Faith shining through every smile" },
+        { src: "images/photo-14.jpg", caption: "A celebration rooted in prayer" },
+        { src: "images/photo-15.jpg", caption: "Sisters standing proudly together" },
+        { src: "images/photo-16.jpg", caption: "Thankful hearts and bright colours" },
+        { src: "images/photo-17.jpg", caption: "A moment to remember" },
+        { src: "images/photo-18.jpg", caption: "Joy shared among sisters" },
+        { src: "images/photo-19.jpg", caption: "Blessings from St Veronica Day" },
+        { src: "images/photo-20.jpg", caption: "Our guild president" },
+        { src: "images/photo-21.jpg", caption: "Faces of faith and friendship" },
+        { src: "images/photo-22.jpg", caption: "A day of warmth and gratitude" },
+        { src: "images/photo-23.jpg", caption: "Celebrating with one heart" },
+        { src: "images/photo-24.jpg", caption: "Memories made in love" },
+        { src: "images/photo-26.jpg", caption: "United in service" },
+        { src: "images/photo-27.jpg", caption: "A joyful witness of faith" },
+        { src: "images/photo-28.jpg", caption: "Honouring the women of the guild" },
+        { src: "images/photo-29.jpg", caption: "A celebration to treasure" },
+        { src: "images/photo-32.jpg", caption: "The spirit of the day" },
+        { src: "images/photo-33.jpg", caption: "Together under God's grace" },
+        { src: "images/photo-34.jpg", caption: "A blessed St Veronica Day" },
+        { src: "images/photo-35.jpg", caption: "Closing memories with gratitude" },
       ];
 
       // Videos from the videos folder.
@@ -337,6 +432,12 @@
           title: "Celebration Video 5",
           caption: "A highlight from St Veronica Day.",
         },
+        {
+          type: "mp4",
+          src: "videos/video-6.mp4",
+          title: "Celebration Video 6",
+          caption: "A highlight from St Veronica Day.",
+        },
       ];
 
       const MESSAGES = [
@@ -368,12 +469,10 @@
 
       const photoGrid = document.getElementById("photoGrid");
       photoGrid.innerHTML = PHOTOS.map(
-        (p, i) => `
-        <figure class="fade-up group relative overflow-hidden rounded-2xl card-shadow bg-sky-50 cursor-pointer ${
-          i % 5 === 0 ? "md:row-span-2 md:col-span-1" : ""
-        }" onclick="openLightbox('${p.src}')">
+        (p) => `
+        <figure class="fade-up gallery-photo group relative overflow-hidden rounded-2xl card-shadow bg-sky-50 cursor-pointer break-inside-avoid mb-3 md:mb-4" onclick="openLightbox('${p.src}')">
           <img src="${p.src}" alt="${p.caption}"
-               class="w-full h-full object-contain aspect-photo" />
+               class="w-full h-auto block" />
           <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white text-sm font-medium
                              bg-gradient-to-t from-sky-900/80 via-sky-900/30 to-transparent
                              opacity-0 group-hover:opacity-100 transition">
@@ -442,6 +541,34 @@
       document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
 
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Music control. Browsers may block autoplay until the visitor clicks once.
+      const music = document.getElementById("backgroundMusic");
+      const musicToggle = document.getElementById("musicToggle");
+
+      function updateMusicButton() {
+        musicToggle.textContent = music.paused ? "Play Music" : "Pause Music";
+        musicToggle.setAttribute(
+          "aria-label",
+          music.paused ? "Play background music" : "Pause background music"
+        );
+      }
+
+      musicToggle.addEventListener("click", async () => {
+        try {
+          if (music.paused) {
+            await music.play();
+          } else {
+            music.pause();
+          }
+        } catch (error) {
+          console.warn("Music playback was blocked until the visitor interacts with the page.", error);
+        } finally {
+          updateMusicButton();
+        }
+      });
+
+      music.play().then(updateMusicButton).catch(updateMusicButton);
     </script>
   </body>
 </html>
