@@ -64,6 +64,7 @@
       /* aspect helpers for older browsers */
       .aspect-photo {
         aspect-ratio: 4 / 5;
+        max-height: 34rem;
       }
       .aspect-video-16 {
         aspect-ratio: 16 / 9;
@@ -185,8 +186,7 @@
             <h2 class="font-display text-4xl md:text-5xl text-sky-900">Photos from the day</h2>
           </div>
           <p class="text-slate-500 text-sm max-w-sm">
-            Tap any photo to view full-size. Replace the sample images with your own by editing
-            <code class="bg-white px-1.5 py-0.5 rounded border border-sky-100">index.html</code>.
+            Tap any photo to view full-size and relive the moments from our celebration.
           </p>
         </div>
 
@@ -269,31 +269,73 @@
          EDIT THIS SECTION — add your own photos, videos and messages
          ============================================================ */
 
-      // Photos: put your image files in an /images folder next to this
-      // index.html (e.g. images/photo1.jpg) and reference them below.
+      // Photos from the images folder.
       const PHOTOS = [
-        { src: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=900", caption: "Morning worship" },
-        { src: "https://images.unsplash.com/photo-1520637836862-4d197d17c55a?w=900", caption: "The processional" },
-        { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=900", caption: "Sisters in sky blue" },
-        { src: "https://images.unsplash.com/photo-1478147427282-58a87a120781?w=900", caption: "Praise and dance" },
-        { src: "https://images.unsplash.com/photo-1502136969935-8d8eef54d77b?w=900", caption: "Fellowship meal" },
-        { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900", caption: "Prayer circle" },
+        { src: "images/photo-1.png", caption: "St Veronica Day moment 1" },
+        { src: "images/photo-2.jpg", caption: "St Veronica Day moment 2" },
+        { src: "images/photo-3.jpg", caption: "St Veronica Day moment 3" },
+        { src: "images/photo-4.jpg", caption: "St Veronica Day moment 4" },
+        { src: "images/photo-5.jpg", caption: "St Veronica Day moment 5" },
+        { src: "images/photo-6.jpg", caption: "St Veronica Day moment 6" },
+        { src: "images/photo-7.jpg", caption: "St Veronica Day moment 7" },
+        { src: "images/photo-8.jpg", caption: "St Veronica Day moment 8" },
+        { src: "images/photo-9.jpg", caption: "St Veronica Day moment 9" },
+        { src: "images/photo-10.jpg", caption: "St Veronica Day moment 10" },
+        { src: "images/photo-11.jpg", caption: "St Veronica Day moment 11" },
+        { src: "images/photo-12.jpg", caption: "St Veronica Day moment 12" },
+        { src: "images/photo-13.jpg", caption: "St Veronica Day moment 13" },
+        { src: "images/photo-14.jpg", caption: "St Veronica Day moment 14" },
+        { src: "images/photo-15.jpg", caption: "St Veronica Day moment 15" },
+        { src: "images/photo-16.jpg", caption: "St Veronica Day moment 16" },
+        { src: "images/photo-17.jpg", caption: "St Veronica Day moment 17" },
+        { src: "images/photo-18.jpg", caption: "St Veronica Day moment 18" },
+        { src: "images/photo-19.jpg", caption: "St Veronica Day moment 19" },
+        { src: "images/photo-20.jpg", caption: "St Veronica Day moment 20" },
+        { src: "images/photo-21.jpg", caption: "St Veronica Day moment 21" },
+        { src: "images/photo-22.jpg", caption: "St Veronica Day moment 22" },
+        { src: "images/photo-23.jpg", caption: "St Veronica Day moment 23" },
+        { src: "images/photo-24.jpg", caption: "St Veronica Day moment 24" },
+        { src: "images/photo-26.jpg", caption: "St Veronica Day moment 26" },
+        { src: "images/photo-27.jpg", caption: "St Veronica Day moment 27" },
+        { src: "images/photo-28.jpg", caption: "St Veronica Day moment 28" },
+        { src: "images/photo-29.jpg", caption: "St Veronica Day moment 29" },
+        { src: "images/photo-32.jpg", caption: "St Veronica Day moment 32" },
+        { src: "images/photo-33.jpg", caption: "St Veronica Day moment 33" },
+        { src: "images/photo-34.jpg", caption: "St Veronica Day moment 34" },
+        { src: "images/photo-35.jpg", caption: "St Veronica Day moment 35" },
       ];
 
-      // Videos: use YouTube embed URLs (https://www.youtube.com/embed/VIDEO_ID)
-      // or direct .mp4 files hosted alongside the site.
+      // Videos from the videos folder.
       const VIDEOS = [
         {
-          type: "youtube",
-          src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          title: "Opening Choir",
-          caption: "The choir welcomes everyone into worship.",
+          type: "mp4",
+          src: "videos/video-1.mp4",
+          title: "Celebration Video 1",
+          caption: "A highlight from St Veronica Day.",
         },
         {
-          type: "youtube",
-          src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-          title: "Sermon Highlights",
-          caption: "A word on the courage of St Veronica.",
+          type: "mp4",
+          src: "videos/video-2.mp4",
+          title: "Celebration Video 2",
+          caption: "A highlight from St Veronica Day.",
+        },
+        {
+          type: "mp4",
+          src: "videos/video-3.mp4",
+          title: "Celebration Video 3",
+          caption: "A highlight from St Veronica Day.",
+        },
+        {
+          type: "mp4",
+          src: "videos/video-4.mp4",
+          title: "Celebration Video 4",
+          caption: "A highlight from St Veronica Day.",
+        },
+        {
+          type: "mp4",
+          src: "videos/video-5.mp4",
+          title: "Celebration Video 5",
+          caption: "A highlight from St Veronica Day.",
         },
       ];
 
@@ -327,11 +369,11 @@
       const photoGrid = document.getElementById("photoGrid");
       photoGrid.innerHTML = PHOTOS.map(
         (p, i) => `
-        <figure class="fade-up group relative overflow-hidden rounded-2xl card-shadow bg-white cursor-pointer ${
+        <figure class="fade-up group relative overflow-hidden rounded-2xl card-shadow bg-sky-50 cursor-pointer ${
           i % 5 === 0 ? "md:row-span-2 md:col-span-1" : ""
         }" onclick="openLightbox('${p.src}')">
           <img src="${p.src}" alt="${p.caption}"
-               class="w-full h-full object-cover aspect-photo transition duration-700 group-hover:scale-105" />
+               class="w-full h-full object-contain aspect-photo" />
           <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white text-sm font-medium
                              bg-gradient-to-t from-sky-900/80 via-sky-900/30 to-transparent
                              opacity-0 group-hover:opacity-100 transition">
