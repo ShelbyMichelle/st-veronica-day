@@ -6,12 +6,12 @@
     <title>St Veronica Day — Celebration Recap</title>
     <meta
       name="description"
-      content="Relive St Veronica Day — photos, videos and messages from our Anglican women's group celebration."
+      content="Relive St Veronica Day through photos and videos from our Anglican women's group celebration."
     />
     <meta property="og:title" content="St Veronica Day — Celebration Recap" />
     <meta
       property="og:description"
-      content="Photos, videos and messages from our St Veronica Day celebration."
+      content="Photos and videos from our St Veronica Day celebration."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -99,6 +99,13 @@
         transform: translateY(-4px);
         box-shadow: 0 18px 45px -18px rgba(2, 132, 199, 0.45);
       }
+      .music-fab {
+        box-shadow: 0 12px 28px rgba(3, 105, 161, 0.35);
+      }
+      .music-fab:focus-visible {
+        outline: 3px solid #bae6fd;
+        outline-offset: 3px;
+      }
       @keyframes heroDrift {
         from {
           transform: scale(1.05) translate3d(-1%, -1%, 0);
@@ -131,12 +138,10 @@
   <body class="bg-white text-slate-800">
     <!-- NAV -->
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-sky-100">
-      <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+      <div class="max-w-6xl mx-auto px-5 py-4">
+        <div class="flex items-center justify-between">
         <a href="#top" class="flex items-center gap-3">
-          <span
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-sky-500 text-white font-display text-xl"
-            >V</span
-          >
+          <img src="images/logo.jpg" alt="St Veronica logo" class="h-10 w-10 rounded-full object-contain" />
           <div class="leading-tight">
             <div class="font-display text-xl text-sky-800 font-semibold">St Veronica</div>
             <div class="text-[11px] uppercase tracking-widest text-sky-600">Women's Guild</div>
@@ -146,13 +151,27 @@
           <a href="#story" class="hover:text-sky-600">The Day</a>
           <a href="#gallery" class="hover:text-sky-600">Gallery</a>
           <a href="#videos" class="hover:text-sky-600">Videos</a>
-          <a href="#messages" class="hover:text-sky-600">Messages</a>
         </nav>
-        <a
-          href="#gallery"
-          class="hidden sm:inline-flex items-center gap-2 rounded-full bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium px-4 py-2 transition"
-          >Catch up →</a
+        <button
+          id="mobileMenuToggle"
+          type="button"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-sky-800 transition hover:bg-sky-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 md:hidden"
+          aria-label="Open navigation menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
         >
+          <svg id="mobileMenuIcon" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+        </div>
+        <nav id="mobileMenu" class="hidden pt-3 md:hidden" aria-label="Mobile navigation">
+          <div class="grid gap-1 rounded-xl border border-sky-100 bg-white p-2 text-sm font-medium text-slate-600 shadow-lg">
+            <a href="#story" class="rounded-lg px-4 py-3 hover:bg-sky-50 hover:text-sky-700">The Day</a>
+            <a href="#gallery" class="rounded-lg px-4 py-3 hover:bg-sky-50 hover:text-sky-700">Gallery</a>
+            <a href="#videos" class="rounded-lg px-4 py-3 hover:bg-sky-50 hover:text-sky-700">Videos</a>
+          </div>
+        </nav>
       </div>
     </header>
 
@@ -171,8 +190,7 @@
           "Do not quench the spirit - 1 Thessalonians 5:19"
         </p>
         <p class="max-w-2xl mx-auto mt-6 text-white/90 md:text-lg fade-up">
-          A day of worship, joy, colour and compassion; hosted by women of the St Veronica Guild. If you couldn't be there in person, step in through the photos, videos
-          and messages below.
+          A day of worship, joy, colour and compassion; hosted by women of the St Veronica Guild. If you couldn't be there in person, step in through the photos and videos below.
         </p>
 
         <div class="mt-10 flex flex-wrap justify-center gap-3 fade-up">
@@ -216,6 +234,17 @@
     </section>
 
     <audio id="backgroundMusic" src="audio/music.mp3" preload="metadata" loop></audio>
+    <button
+      id="floatingMusicToggle"
+      type="button"
+      class="music-fab fixed bottom-5 right-5 z-50 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-sky-600 px-4 text-sm font-semibold text-white transition hover:bg-sky-700 focus:outline-none"
+      aria-label="Play background music"
+      aria-pressed="false"
+      title="Play music"
+    >
+      <span id="floatingMusicIcon" class="text-xl" aria-hidden="true">♫</span>
+      <span id="floatingMusicText">Play Music</span>
+    </button>
 
     <!-- STORY -->
     <section id="story" class="py-20 md:py-28 bg-white">
@@ -226,13 +255,12 @@
         </h2>
         <div class="mt-8 space-y-5 text-slate-600 md:text-lg leading-relaxed fade-up">
           <p>
-            Saint Veronica is remembered for a single act of quiet courage — stepping through a
+            Saint Veronica is remembered for a single act of quiet courage; stepping through a
             hostile crowd to wipe the face of Christ on the road to Calvary. That small gesture of
             tenderness is the heart of our guild.
           </p>
           <p>
-            This past weekend, our sisters gathered in her name — in song, in prayer, in white and
-            sky-blue, and in the simple joy of being together. This page is our little way of
+            This past weekend, our sisters gathered in her name in songs, prayer, and in the simple joy of being together. This page is our little way of
             bringing the day home to those who couldn't be there.
           </p>
         </div>
@@ -253,11 +281,11 @@
               fellowship, service and the beautiful bond shared by the women of our guild.
             </p>
             <p>
-              May these memories remind every sister that her prayers, kindness and presence are a
+              May these memories remind every member that her prayers, kindness and presence are a
               blessing to the church and to the community we serve.
             </p>
           </div>
-          <div class="mt-7 text-sm font-semibold text-sky-800">President, St Veronica Women's Guild</div>
+          <div class="mt-7 text-sm font-semibold text-sky-800">President, Mrs. Pauleen Lipenga</div>
         </div>
         <figure
           class="fade-up home-photo-motion overflow-hidden rounded-2xl bg-sky-100 card-shadow"
@@ -308,27 +336,10 @@
       </div>
     </section>
 
-    <!-- MESSAGES -->
-    <section id="messages" class="py-20 md:py-28 bg-gradient-to-b from-sky-50 to-white">
-      <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 fade-up">
-          <p class="text-xs uppercase tracking-[0.3em] text-sky-600 mb-2">Messages</p>
-          <h2 class="font-display text-4xl md:text-5xl text-sky-900">Words from our sisters</h2>
-        </div>
-
-        <div id="messageGrid" class="grid md:grid-cols-2 gap-6">
-          <!-- messages injected by JS -->
-        </div>
-      </div>
-    </section>
-
     <!-- CTA / FOOTER -->
     <footer class="bg-sky-900 text-sky-100">
       <div class="max-w-4xl mx-auto px-5 py-16 text-center">
-        <span
-          class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-sky-600 font-display text-2xl mb-6"
-          >V</span
-        >
+        <img src="images/logo.jpg" alt="St Veronica logo" class="h-14 w-14 rounded-full object-contain mx-auto mb-6" />
         <h3 class="font-display text-3xl md:text-4xl text-white">
           "Whatever you do for the least of these…"
         </h3>
@@ -361,7 +372,7 @@
 
     <script>
       /* ============================================================
-         EDIT THIS SECTION — add your own photos, videos and messages
+         EDIT THIS SECTION — add your own photos and videos
          ============================================================ */
 
       // Photos from the images folder.
@@ -398,70 +409,40 @@
         { src: "images/photo-33.jpg", caption: "Together under God's grace" },
         { src: "images/photo-34.jpg", caption: "A blessed St Veronica Day" },
         { src: "images/photo-35.jpg", caption: "Closing memories with gratitude" },
+        { src: "images/photo-36.jpeg", caption: "A treasured St Veronica Day memory" },
       ];
 
-      // Videos from the videos folder.
+      // Videos 1–10 are hosted on YouTube; videos 11–27 are hosted on Cloudinary.
       const VIDEOS = [
-        {
-          type: "mp4",
-          src: "videos/video-1.mp4",
-          title: "Celebration Video 1",
-          caption: "A highlight from St Veronica Day.",
-        },
-        {
-          type: "mp4",
-          src: "videos/video-2.mp4",
-          title: "Celebration Video 2",
-          caption: "A highlight from St Veronica Day.",
-        },
-        {
-          type: "mp4",
-          src: "videos/video-3.mp4",
-          title: "Celebration Video 3",
-          caption: "A highlight from St Veronica Day.",
-        },
-        {
-          type: "mp4",
-          src: "videos/video-4.mp4",
-          title: "Celebration Video 4",
-          caption: "A highlight from St Veronica Day.",
-        },
-        {
-          type: "mp4",
-          src: "videos/video-5.mp4",
-          title: "Celebration Video 5",
-          caption: "A highlight from St Veronica Day.",
-        },
-        {
-          type: "mp4",
-          src: "videos/video-6.mp4",
-          title: "Celebration Video 6",
-          caption: "A highlight from St Veronica Day.",
-        },
+        { type: "youtube", src: "https://www.youtube.com/embed/eaYbkgfDz3s?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 1", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/T0quAmM3r0M?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 2", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/qAMriYwfG1o?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 3", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/UFp8Xy8UoJE?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 4", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/XuYyE1NxFL0?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 5", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/iQsBIJnencI?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 6", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/uhvXb2Uc6o4?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 7", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/d8qHko1-Nks?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 8", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/aw5slTif6v0?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 9", caption: "A highlight from St Veronica Day." },
+        { type: "youtube", src: "https://www.youtube.com/embed/JmiRYA6UIQ0?rel=0&playsinline=1&enablejsapi=1", title: "Celebration Video 10", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-11_y5cvin", title: "Celebration Video 11", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-12_fot5dl", title: "Celebration Video 12", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-13_glt5ww", title: "Celebration Video 13", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-14_rg1lsh", title: "Celebration Video 14", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-15_qxvbsb", title: "Celebration Video 15", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-16_gt7xbj", title: "Celebration Video 16", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-17_zwc4gs", title: "Celebration Video 17", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-18_idlxal", title: "Celebration Video 18", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-19_pjymvp", title: "Celebration Video 19", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-20_iajf18", title: "Celebration Video 20", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-21_wvsqpo", title: "Celebration Video 21", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-22_usrxkd", title: "Celebration Video 22", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-23_c6xdwa", title: "Celebration Video 23", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-24_tyrueh", title: "Celebration Video 24", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-25_bdjtas", title: "Celebration Video 25", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-26_uczncb", title: "Celebration Video 26", caption: "A highlight from St Veronica Day." },
+        { type: "cloudinary", src: "https://player.cloudinary.com/embed/?cloud_name=dk3sy96jo&public_id=video-27_rcgxzh", title: "Celebration Video 27", caption: "A highlight from St Veronica Day." },
       ];
 
-      const MESSAGES = [
-        {
-          text: "What a blessed day — to see so many of my sisters gathered in one heart. God is good.",
-          name: "Mama Grace",
-          role: "Guild Leader",
-        },
-        {
-          text: "St Veronica reminds us that the smallest acts of kindness are seen by heaven.",
-          name: "Rev. Fr. Samuel",
-          role: "Parish Priest",
-        },
-        {
-          text: "The colours, the voices, the food — but most of all, the love. Thank you sisters.",
-          name: "Sister Ada",
-          role: "Member",
-        },
-        {
-          text: "I couldn't stop smiling all day. Already looking forward to next year!",
-          name: "Sister Miriam",
-          role: "Member",
-        },
-      ];
 
       /* ============================================================
          Renderers — you shouldn't need to change anything below.
@@ -483,14 +464,18 @@
 
       const videoGrid = document.getElementById("videoGrid");
       videoGrid.innerHTML = VIDEOS.map(
-        (v) => `
+        (v, index) => `
         <div class="fade-up rounded-2xl overflow-hidden bg-white card-shadow">
           <div class="aspect-video-16 bg-sky-100">
             ${
               v.type === "youtube"
-                ? `<iframe class="w-full h-full" src="${v.src}" title="${v.title}"
+                ? `<iframe id="youtubePlayer${index}" data-youtube-player class="w-full h-full" src="${v.src}" title="${v.title}" loading="lazy"
                      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                      allowfullscreen></iframe>`
+                : v.type === "cloudinary"
+                  ? `<iframe class="w-full h-full" src="${v.src}" title="${v.title}" loading="lazy"
+                       frameborder="0" allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                       allowfullscreen></iframe>`
                 : `<video class="w-full h-full" controls src="${v.src}"></video>`
             }
           </div>
@@ -499,24 +484,6 @@
             <p class="text-slate-500 text-sm mt-1">${v.caption}</p>
           </div>
         </div>`
-      ).join("");
-
-      const messageGrid = document.getElementById("messageGrid");
-      messageGrid.innerHTML = MESSAGES.map(
-        (m) => `
-        <blockquote class="fade-up bg-white border border-sky-100 rounded-2xl p-7 card-shadow">
-          <div class="text-sky-300 font-display text-5xl leading-none mb-2">"</div>
-          <p class="text-slate-700 md:text-lg leading-relaxed">${m.text}</p>
-          <footer class="mt-5 flex items-center gap-3">
-            <div class="h-10 w-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-semibold">
-              ${m.name.charAt(0)}
-            </div>
-            <div>
-              <div class="font-semibold text-sky-900">${m.name}</div>
-              <div class="text-xs uppercase tracking-widest text-sky-600">${m.role}</div>
-            </div>
-          </footer>
-        </blockquote>`
       ).join("");
 
       // Lightbox
@@ -542,19 +509,53 @@
 
       document.getElementById("year").textContent = new Date().getFullYear();
 
+      // Mobile navigation
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuIcon = document.getElementById("mobileMenuIcon");
+
+      function setMobileMenu(isOpen) {
+        mobileMenu.classList.toggle("hidden", !isOpen);
+        mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+        mobileMenuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        mobileMenuIcon.innerHTML = isOpen
+          ? '<path stroke-linecap="round" d="M6 6l12 12M18 6 6 18" />'
+          : '<path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />';
+      }
+
+      mobileMenuToggle.addEventListener("click", () => {
+        setMobileMenu(mobileMenu.classList.contains("hidden"));
+      });
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMobileMenu(false));
+      });
+
       // Music control. Browsers may block autoplay until the visitor clicks once.
       const music = document.getElementById("backgroundMusic");
       const musicToggle = document.getElementById("musicToggle");
+      const floatingMusicToggle = document.getElementById("floatingMusicToggle");
+      const floatingMusicIcon = document.getElementById("floatingMusicIcon");
+      const musicControls = [musicToggle, floatingMusicToggle];
 
       function updateMusicButton() {
-        musicToggle.textContent = music.paused ? "Play Music" : "Pause Music";
-        musicToggle.setAttribute(
-          "aria-label",
-          music.paused ? "Play background music" : "Pause background music"
-        );
+        const isPlaying = !music.paused;
+        const label = isPlaying ? "Pause background music" : "Play background music";
+        musicToggle.textContent = isPlaying ? "Pause Music" : "Play Music";
+        floatingMusicIcon.textContent = isPlaying ? "■" : "♫";
+        document.getElementById("floatingMusicText").textContent = isPlaying
+          ? "Stop Music"
+          : "Play Music";
+        musicControls.forEach((control) => {
+          control.setAttribute("aria-label", label);
+          control.setAttribute("aria-pressed", String(isPlaying));
+          control.title = isPlaying ? "Stop music" : "Play music";
+        });
       }
 
-      musicToggle.addEventListener("click", async () => {
+      async function toggleMusic() {
         try {
           if (music.paused) {
             await music.play();
@@ -566,7 +567,52 @@
         } finally {
           updateMusicButton();
         }
+      }
+
+      musicControls.forEach((control) => control.addEventListener("click", toggleMusic));
+      music.addEventListener("play", updateMusicButton);
+      music.addEventListener("pause", updateMusicButton);
+
+      // Keep audio clear: a video pauses the background music and any other video.
+      const videos = Array.from(document.querySelectorAll("#videoGrid video"));
+      videos.forEach((video) => {
+        video.addEventListener("play", () => {
+          music.pause();
+          videos.forEach((otherVideo) => {
+            if (otherVideo !== video && !otherVideo.paused) otherVideo.pause();
+          });
+        });
       });
+
+      // Give embedded YouTube videos the same no-collision playback behaviour.
+      const youtubeFrames = Array.from(document.querySelectorAll("[data-youtube-player]"));
+      const youtubePlayers = [];
+
+      function createYouTubePlayers() {
+        youtubeFrames.forEach((frame) => {
+          const player = new YT.Player(frame.id, {
+            events: {
+              onStateChange(event) {
+                if (event.data !== YT.PlayerState.PLAYING) return;
+                music.pause();
+                videos.forEach((video) => !video.paused && video.pause());
+                youtubePlayers.forEach((otherPlayer) => {
+                  if (otherPlayer !== event.target) otherPlayer.pauseVideo();
+                });
+              },
+            },
+          });
+          youtubePlayers.push(player);
+        });
+      }
+
+      if (youtubeFrames.length) {
+        window.onYouTubeIframeAPIReady = createYouTubePlayers;
+        const youtubeApi = document.createElement("script");
+        youtubeApi.src = "https://www.youtube.com/iframe_api";
+        youtubeApi.async = true;
+        document.head.appendChild(youtubeApi);
+      }
 
       music.play().then(updateMusicButton).catch(updateMusicButton);
     </script>
